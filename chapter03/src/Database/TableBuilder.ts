@@ -1,11 +1,27 @@
-import { ITableBuilder, ITable } from "./Interfaces";
 import { StringOrNull } from "../Types";
 
+export interface ITableBuilder {
+  WithDatabase(databaseName: string): ITableBuilder;
+  WithVersion(version: number): ITableBuilder;
+  WithTableName(tableName: string): ITableBuilder;
+  WithPrimaryField(primaryField: string): ITableBuilder;
+  WithIndexName(indexName: string): ITableBuilder;
+}
+
+export interface ITable {
+  Database(): string;
+  Version(): number;
+  TableName(): string;
+  // PrimarField(): string;
+  IndexName(): string;
+  Build(database: IDBDatabase): void;
+}
+
 export default class TableBuilder implements ITableBuilder, ITable {
-  private database: string = "";
-  private tableName: string = "";
-  private primaryField: string = "";
-  private indexName: string = "";
+  private database: StringOrNull = "";
+  private tableName: StringOrNull = "";
+  private primaryField: StringOrNull = "";
+  private indexName: StringOrNull = "";
   private version: number = 1;
 
   public WithDatabase(databaseName: string): ITableBuilder {

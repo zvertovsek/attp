@@ -1,6 +1,6 @@
-import TableBuilder from "./TableBuilder";
+import TableBuilder from "./Database/TableBuilder";
 
-export default class PersonalDetailsTableBuilder {
+export class PersonalDetailsTableBuilder {
   public Build(): TableBuilder {
     const tableBuilder: TableBuilder = new TableBuilder();
     tableBuilder
